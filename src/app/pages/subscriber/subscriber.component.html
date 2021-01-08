@@ -1,0 +1,223 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <p>{{todayString | date}}</p>
+        </div>
+      </div>     
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+  <div class=" row">
+    <div class=" col-xl-6">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Daily Traffic</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class="chart" id="chartdiv1">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-xl-6">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Daily Traffic</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class="chart" id="chartdiv2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" row">
+    <div class=" col-xl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Country</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" chart" id="chartdiv">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" row" >
+    <div class=" col-xl-12 col-md-6">
+      <div class=" card card-stats">
+        <div class="class card-header">
+          Find Subscriber
+        </div>
+        <div class=" card-body">
+          <div class=" row" style="justify-content: space-between;">
+            <div class=" col-3">
+              <div
+                class=""
+              >
+                Continent
+              </div>
+              <input
+                class=" form-control"
+                id="example-date-input"
+                type="text"
+                value=""
+              />
+            </div>
+
+            <div class=" col-3">
+              <div
+                class=""
+              >
+                Country
+              </div>
+              <select class=" form-control" id="exampleFormControlSelect3">
+                <option> Malaysia </option>
+                <option> Asian </option>
+                <option> Europe </option>
+                <option> North America </option>
+                <option> South America </option>
+                <option> Australia </option>
+                <option> Africa </option>
+
+              </select>
+            </div>
+
+            <div class=" col-3">
+              <div
+                class=""
+              >
+                Telco
+              </div>
+              <select class=" form-control" id="exampleFormControlSelect3">
+                <option> Celcom </option>
+                <option> Digi </option>
+                <option> Maxis </option>
+                <option> Umobile </option>
+                <option> TM </option>
+              </select>
+            </div>
+            <div class=" col-2">
+              <div
+                class=""
+              >
+                
+              </div>
+              <button class=" btn btn-info" type="submit" style="margin-top: 25px;">
+                Find
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class=" row">
+    <div class=" col">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-sm-6">
+              <h3 class=" mb-0">Subscriber Form</h3>
+            </div>
+          </div>
+        </div>
+        <div class="dataTables_wrapper py-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="datatable_length">
+                <label>
+                  Show
+                  <select
+                    name="datatable_length"
+                    aria-controls="datatable"
+                    class="form-control form-control-sm"
+                    (change)="entriesChange($event)"
+                  >
+                    <option value="10" [selected]="entries == 10">10</option>
+                    <option value="25" [selected]="entries == 25">25</option>
+                    <option value="50" [selected]="entries == 50">50</option>
+                    <option value="-1" [selected]="entries == -1">All</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div id="datatable_filter" class="dataTables_filter">
+                <label>
+                  <input
+                    type="search"
+                    class="form-control form-control-sm"
+                    placeholder="Search records"
+                    aria-controls="datatable"
+                    (keyup)="filterTable($event)"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <ngx-datatable
+            class="bootstrap selection-cell"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="entries != -1 ? entries : undefined"
+            [rows]="temp"
+            (activate)="onActivate($event)"
+          >
+            <ngx-datatable-column name="phone"></ngx-datatable-column>
+            <ngx-datatable-column name="telco"></ngx-datatable-column>
+            <ngx-datatable-column name="Date Registered" prop="dateregistered">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.dateregistered}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Days Inactive" prop="inactive">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.inactive}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="activate">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <div>
+                  <label class=" custom-toggle mr-1">
+                    <input checked="checked" type="checkbox" />
+    
+                    <span
+                      class=" custom-toggle-slider rounded-circle"
+                      data-label-off="No"
+                      data-label-on="Yes"
+                    >
+                    </span>
+                  </label>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,188 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <p>{{todayString | date}}</p>
+        </div>
+      </div>     
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+  <div class=" row">
+    <div class=" col-xl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Month</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" chart" id="chartdiv">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class=" row">
+    <div class=" col">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-sm-6">
+              <h3 class=" mb-0">List Of User</h3>
+            </div>
+            <div class="col-sm-6 text-right">
+              <button
+              class=" btn btn-sm btn-info"
+                data-target="#modal-default"
+                data-toggle="modal"
+                type="button"
+                (click)="openDefaultModal(modalDefault)"
+              >
+                New
+              </button>    
+              <ng-template #modalDefault>
+                <div class=" modal-header">
+                  <h6 class=" modal-title" id="modal-title-default">
+                    Create New User
+                  </h6>
+
+                  <button
+                    aria-label="Close"
+                    class=" close"
+                    data-dismiss="modal"
+                    type="button"
+                    (click)="defaultModal.hide()"
+                  >
+                    <span aria-hidden="true"> × </span>
+                  </button>
+                </div>
+
+                <div class=" modal-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Name
+                      </label>
+                      <input
+                        class="form-control mb-2"
+                        placeholder=""
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Phone Number
+                      </label>
+                      <input
+                        class="form-control mb-2"
+                        placeholder=""
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class=" modal-footer" style="justify-content: end;">
+                  <button class=" btn btn-danger" type="button">
+                    Close
+                  </button>
+
+                  <button
+                    class=" btn btn-success"
+                    data-dismiss="modal"
+                    type="button"
+                    (click)="defaultModal.hide()"
+                  >
+                    Create
+                  </button>
+                </div>
+              </ng-template>    
+            </div>
+          </div>
+        </div>
+        <div class="dataTables_wrapper py-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="datatable_length">
+                <label>
+                  Show
+                  <select
+                    name="datatable_length"
+                    aria-controls="datatable"
+                    class="form-control form-control-sm"
+                    (change)="entriesChange($event)"
+                  >
+                    <option value="10" [selected]="entries == 10">10</option>
+                    <option value="25" [selected]="entries == 25">25</option>
+                    <option value="50" [selected]="entries == 50">50</option>
+                    <option value="-1" [selected]="entries == -1">All</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div id="datatable_filter" class="dataTables_filter">
+                <label>
+                  <input
+                    type="search"
+                    class="form-control form-control-sm"
+                    placeholder="Search records"
+                    aria-controls="datatable"
+                    (keyup)="filterTable($event)"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <ngx-datatable
+            class="bootstrap selection-cell"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="entries != -1 ? entries : undefined"
+            [rows]="temp"
+            (activate)="onActivate($event)"
+          >
+            <ngx-datatable-column name="User ID" prop="userid">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.userid}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="name"></ngx-datatable-column>
+			<ngx-datatable-column name="email"></ngx-datatable-column>
+            <ngx-datatable-column name="Joined At" prop="joinedat">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.joinedat}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="User Type" prop="usertype">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.usertype}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="status"></ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

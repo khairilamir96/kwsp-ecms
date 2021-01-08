@@ -1,0 +1,583 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <p>{{todayString | date}}</p>
+        </div>
+      </div>     
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+  <div class=" row">
+    <div class=" col-xl-6">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Daily Traffic</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class="chart" id="chartdiv1">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-xl-6">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Daily Traffic</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class="chart" id="chartdiv2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" row">
+    <div class=" col-xl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Traffic</h5></div>
+              <div class="col-md-2 ml-auto">           
+                <select class=" form-control form-control-sm" data-toggle="select" id="selectr">
+                  <option value="alerts"> Daily </option>
+
+                  <option value="badges"> Weekly </option>
+
+                  <option value="buttons"> Monthly </option>
+               </select>
+              </div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" chart" id="chartdiv">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" row">
+    <div class=" col-xl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Traffic</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" chart" id="chartdiv3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" row" >
+    <div class=" col-xl-12 col-md-6">
+      <div class=" card card-stats">
+        <div class="class card-header">
+          Find Job
+        </div>
+        <div class=" card-body">
+          <div class=" row" style="justify-content: space-between;">
+            <div class=" col-3">
+              <div
+                class=""
+              >
+                Date Registered
+              </div>
+              <input
+                class=" form-control"
+                id="example-date-input"
+                type="date"
+                value="Date"
+              />
+            </div>
+
+            <div class=" col-3">
+              <div
+                class=""
+              >
+                Category
+              </div>
+              <select class=" form-control" id="exampleFormControlSelect3" [(ngModel)]="firstSelectValue">
+                <option *ngFor="let opt of firstSelectOptions" [value]="opt">
+                  {{ opt }}
+               </option>
+              </select> 
+            </div>
+
+            <div class=" col-3">
+              <div
+                class=""
+              >
+                Type
+              </div>
+              <select class=" form-control" *ngIf="firstSelectValue" [(ngModel)]="secondSelectValue" >
+                <option *ngFor="let opt of secondSelectOptions" [value]="opt">
+                  {{ opt }}
+                </option>
+              </select>
+            </div>
+            <div class=" col-2">
+              <div
+                class=""
+              >
+                
+              </div>
+              <button class=" btn btn-info" type="submit" style="margin-top: 25px;">
+                Find
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class=" row">
+    <div class=" col">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-sm-6">
+              <h3 class=" mb-0">Registered User</h3>
+            </div>
+            <div class="col-sm-6 text-right">
+              <button
+              class=" btn btn-sm btn-info"
+                data-target="#modal-default"
+                data-toggle="modal"
+                type="button"
+                (click)="openDefaultModal(modalDefault)"
+              >
+                New
+              </button>    
+              <ng-template #modalDefault>
+                <div class=" modal-header">
+                  <h6 class=" modal-title" id="modal-title-default">
+                    Form
+                  </h6>
+
+                  <button
+                    aria-label="Close"
+                    class=" close"
+                    data-dismiss="modal"
+                    type="button"
+                    (click)="defaultModal.hide()"
+                  >
+                    <span aria-hidden="true"> × </span>
+                  </button>
+                </div>
+
+                <div class=" modal-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Category
+                      </label>
+                      <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                        <option> - </option>         
+                        <option> Registration </option>
+                        <option> Withdrawal </option>
+                        <option> i-Akaun </option>
+                        <option> Events </option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Type
+                      </label>
+                      <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                        <option> R - Member </option>
+                        <option> R - Nomination </option>
+                        <option> R - Simpanan Shariah </option>
+                        <option> W - Application Status </option>
+                        <option> W - Verification </option>
+                        <option> W - Reminder </option>
+                        <option> W - Calculation </option>
+                        <option> i - Forgot Password </option>
+                        <option> i - Withdrawal </option>
+                        <option> i - Invetment </option>
+                        <option> i - TAC </option>
+                        <option> i - Scheme </option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">                        
+                    <div class="col-6">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Instance
+                      </label>
+                      <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                        <option> - </option>         
+                        <option> Immediately </option>
+                        <option> Scheduled </option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Date
+                      </label>
+                      <input
+                        class="form-control mb-2"
+                        placeholder=""
+                        type="date"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Recipient
+                      </label>
+                      <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                        <option> - </option>         
+                        <option> All </option>
+                        <option> Batch </option>
+                        <option> Individually </option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Date
+                      </label>
+                      <input
+                        class="form-control mb-2"
+                        placeholder=""
+                        type="date"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Batch / ID
+                      </label>
+                      <input
+                        class="form-control mb-2"
+                        placeholder=""
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <label
+                        class=" form-control-label"
+                        for="exampleFormControlTextarea1"
+                      >
+                        Message
+                      </label>
+
+                      <textarea
+                        class=" form-control"
+                        id="exampleFormControlTextarea3"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class=" modal-footer" style="justify-content: end;">
+                  <button class=" btn btn-danger" type="button">
+                    Delete
+                  </button>
+
+                  <button
+                    class=" btn btn-success"
+                    data-dismiss="modal"
+                    type="button"
+                    (click)="defaultModal.hide()"
+                  >
+                    Review & Submit
+                  </button>
+                </div>
+              </ng-template>    
+            </div>
+          </div>
+        </div>
+        <div class="dataTables_wrapper py-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="datatable_length">
+                <label>
+                  Show
+                  <select
+                    name="datatable_length"
+                    aria-controls="datatable"
+                    class="form-control form-control-sm"
+                    (change)="entriesChange($event)"
+                  >
+                    <option value="10" [selected]="entries == 10">10</option>
+                    <option value="25" [selected]="entries == 25">25</option>
+                    <option value="50" [selected]="entries == 50">50</option>
+                    <option value="-1" [selected]="entries == -1">All</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div id="datatable_filter" class="dataTables_filter">
+                <label>
+                  <input
+                    type="search"
+                    class="form-control form-control-sm"
+                    placeholder="Search records"
+                    aria-controls="datatable"
+                    (keyup)="filterTable($event)"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <ngx-datatable
+            class="bootstrap selection-cell"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="entries != -1 ? entries : undefined"
+            [rows]="temp"
+            (activate)="onActivate($event)"
+          >
+            <ngx-datatable-column name="jobid"></ngx-datatable-column>
+            <ngx-datatable-column name="owner"></ngx-datatable-column>
+            <ngx-datatable-column name="category"></ngx-datatable-column>
+            <ngx-datatable-column name="type"></ngx-datatable-column>
+            <ngx-datatable-column name="transaction"></ngx-datatable-column>
+            <ngx-datatable-column name="date"></ngx-datatable-column>
+            <ngx-datatable-column name="status"></ngx-datatable-column>
+            <ngx-datatable-column name="action">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <div>
+                  <a
+                    class="table-action"
+                    tooltip="Edit"
+                    placement="top"
+                    data-target="#modal-default"
+                    data-toggle="modal"
+                    (click)="openDefaultModal(modalDefault)"
+                  >
+                    <i class=" fas fa-user-edit"> </i>
+                  </a>
+
+                  <a
+                    class="table-action"
+                    tooltip="Delete"
+                    placement="top"
+                  >
+                    <i class=" fas fa-trash"> </i>
+                  </a>
+                  
+                  <ng-template #modalDefault>
+                    <div class=" modal-header">
+                      <h6 class=" modal-title" id="modal-title-default">
+                        Form
+                      </h6>
+    
+                      <button
+                        aria-label="Close"
+                        class=" close"
+                        data-dismiss="modal"
+                        type="button"
+                        (click)="defaultModal.hide()"
+                      >
+                        <span aria-hidden="true"> × </span>
+                      </button>
+                    </div>
+    
+                    <div class=" modal-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Category
+                          </label>
+                          <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                            <option> - </option>         
+                            <option> Registration </option>
+                            <option> Withdrawal </option>
+                            <option> i-Akaun </option>
+                            <option> Events </option>
+                          </select>
+                        </div>
+                        <div class="col-6">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Type
+                          </label>
+                          <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                            <option> R - Member </option>
+                            <option> R - Nomination </option>
+                            <option> R - Simpanan Shariah </option>
+                            <option> W - Application Status </option>
+                            <option> W - Verification </option>
+                            <option> W - Reminder </option>
+                            <option> W - Calculation </option>
+                            <option> i - Forgot Password </option>
+                            <option> i - Withdrawal </option>
+                            <option> i - Invetment </option>
+                            <option> i - TAC </option>
+                            <option> i - Scheme </option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row">                        
+                        <div class="col-6">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Instance
+                          </label>
+                          <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                            <option> - </option>         
+                            <option> Immediately </option>
+                            <option> Scheduled </option>
+                          </select>
+                        </div>
+                        <div class="col-6">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Date
+                          </label>
+                          <input
+                            class="form-control mb-2"
+                            placeholder=""
+                            type="date"
+                          />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Recipient
+                          </label>
+                          <select class=" form-control mb-2" id="exampleFormControlSelect3">
+                            <option> - </option>         
+                            <option> All </option>
+                            <option> Batch </option>
+                            <option> Individually </option>
+                          </select>
+                        </div>
+                        <div class="col-6">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Date
+                          </label>
+                          <input
+                            class="form-control mb-2"
+                            placeholder=""
+                            type="date"
+                          />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Batch / ID
+                          </label>
+                          <input
+                            class="form-control mb-2"
+                            placeholder=""
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <label
+                            class=" form-control-label"
+                            for="exampleFormControlTextarea1"
+                          >
+                            Message
+                          </label>
+
+                          <textarea
+                            class=" form-control"
+                            id="exampleFormControlTextarea3"
+                            rows="3"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <div class=" modal-footer" style="justify-content: end;">
+                      <button class=" btn btn-danger" type="button">
+                        Delete
+                      </button>
+    
+                      <button
+                        class=" btn btn-success"
+                        data-dismiss="modal"
+                        type="button"
+                        (click)="defaultModal.hide()"
+                      >
+                        Review & Submit
+                      </button>
+                    </div>
+                  </ng-template>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

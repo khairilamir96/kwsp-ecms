@@ -1,0 +1,212 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <h6 class=" h2 text-white d-inline-block mb-0">Audit Trails</h6>
+
+          <nav
+            aria-label="breadcrumb"
+            class=" d-none d-md-inline-block ml-md-4"
+          >
+            <ol class=" breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class=" breadcrumb-item">
+                <a href="javascript:void(0)"> <i class=" fas fa-home"> </i> </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class=" container-fluid mt--6">
+  <div class=" row">
+    <div class=" col-xl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+          <div class="col-md-6"><h5 class=" h3 mb-0">Action Types</h5></div>
+          <div class="col-md-2 ml-auto">           
+          </div>
+        </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" chart" id="chartdiv">
+            <canvas class=" chart-canvas" id="chart-bar-stacked"> </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class=" container-fluid mt--6">
+  <div class=" row">
+    <div class=" col">
+      <div class=" card">
+        <div class=" card-header">
+          <h3 class=" mb-0">Audit Trails</h3>
+        </div>
+        <div class="dataTables_wrapper py-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="datatable_length">
+                <label>
+                  Tunjuk
+                  <select
+                    name="datatable_length"
+                    aria-controls="datatable"
+                    class="form-control form-control-sm"
+                    (change)="entriesChange($event)"
+                  >
+                    <option value="5" [selected]="entries == 5">5</option>
+                    <option value="25" [selected]="entries == 25">25</option>
+                    <option value="50" [selected]="entries == 50">50</option>
+                    <option value="-1" [selected]="entries == -1">All</option>
+                  </select>
+                  Rekod
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div id="datatable_filter" class="dataTables_filter">
+                <label>
+                  <input
+                    type="search"
+                    class="form-control form-control-sm"
+                    placeholder="Search records"
+                    aria-controls="datatable"
+                    (keyup)="filterTable($event)"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <ngx-datatable
+            class="bootstrap selection-cell"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="entries != -1 ? entries : undefined"
+            [rows]="temp"
+            (activate)="onActivate($event)"
+          >
+            <ngx-datatable-column name="id"></ngx-datatable-column>
+            <ngx-datatable-column name="username"></ngx-datatable-column>
+            <ngx-datatable-column name="email"></ngx-datatable-column>
+            <ngx-datatable-column name="createdat"></ngx-datatable-column>
+			      <ngx-datatable-column name="action"></ngx-datatable-column>
+            <ngx-datatable-column name="description">
+            </ngx-datatable-column>
+          </ngx-datatable>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #modalForm>
+  <div class=" modal-body p-0">
+    <div class=" card bg-secondary border-0 mb-0">
+      <div class=" card-header bg-transparent pb-5">
+        <div class=" text-muted text-center mt-2 mb-3">
+          <small> Sign in with </small>
+        </div>
+
+        <div class=" btn-wrapper text-center">
+          <a
+            class=" btn btn-neutral btn-icon"
+            href="javascript:void(0)"
+          >
+            <span class=" btn-inner--icon">
+              <img src="assets/img/icons/common/github.svg" />
+            </span>
+
+            <span class=" btn-inner--text"> Github </span>
+          </a>
+
+          <a
+            class=" btn btn-neutral btn-icon"
+            href="javascript:void(0)"
+          >
+            <span class=" btn-inner--icon">
+              <img src="assets/img/icons/common/google.svg" />
+            </span>
+
+            <span class=" btn-inner--text"> Google </span>
+          </a>
+        </div>
+      </div>
+
+      <div class=" card-body px-lg-5 py-lg-5">
+        <div class=" text-center text-muted mb-4">
+          <small> Or sign in with credentials </small>
+        </div>
+
+        <form role="form">
+          <div
+            class="form-group mb-3"
+            [ngClass]="{ focused: focus === true }"
+          >
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="ni ni-email-83"></i
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                placeholder="Email"
+                type="email"
+                (focus)="focus = true"
+                (blur)="focus = false"
+              />
+            </div>
+          </div>
+          <div
+            class="form-group"
+            [ngClass]="{ focused: focus1 === true }"
+          >
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="ni ni-lock-circle-open"></i
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                placeholder="Password"
+                type="password"
+                (focus)="focus1 = true"
+                (blur)="focus1 = false"
+              />
+            </div>
+          </div>
+          <div
+            class="custom-control custom-control-alternative custom-checkbox"
+          >
+            <input
+              class="custom-control-input"
+              id=" customCheckLogin"
+              type="checkbox"
+            />
+            <label
+              class="custom-control-label"
+              for=" customCheckLogin"
+            >
+              <span>Remember me</span>
+            </label>
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-primary my-4">
+              Sign in
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>

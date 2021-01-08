@@ -1,0 +1,135 @@
+<div class=" header pb-6">
+  <div class=" container-fluid">
+    <div class=" header-body">
+      <div class=" row align-items-center py-4">
+        <div class=" col-lg-6 col-7">
+          <p>{{todayString | date}}</p>
+        </div>
+      </div>     
+    </div>
+  </div>
+</div>
+
+<div class=" container-fluid mt--6">
+  <div class=" row">
+    <div class=" col-xl-6">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Daily Traffic</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class="chart" id="chartdiv1">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" col-xl-6">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Daily Traffic</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class="chart" id="chartdiv2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" row">
+    <div class=" col-xl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Traffic</h5></div>
+              <div class="col-md-2 ml-auto">           
+                <select class=" form-control form-control-sm" data-toggle="select" id="selectr">
+                  <option value="alerts"> Daily </option>
+
+                  <option value="badges"> Weekly </option>
+
+                  <option value="buttons"> Monthly </option>
+               </select>
+              </div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" chart" id="chartdiv">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" row">
+    <div class=" col-xl-12">
+      <div class=" card">
+        <div class=" card-header">
+          <div class="row">
+            <div class="col-md-6"><h5 class=" h3 mb-0">Traffic Per Week</h5></div>
+          </div>
+        </div>
+        
+        <div class=" card-body">
+          <div class=" chart" id="chartdiv3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" row" >
+    <div class=" col-xl-12 col-md-6">
+      <div class=" card card-stats">
+        <div class=" card-body">
+          <div class=" row" style="justify-content: space-around;">
+            <div class=" col-auto">
+              <div
+                class=" icon icon-shape icon-xl bg-info text-white rounded-circle shadow"
+              >
+                <h1 style="color:white;">5</h1>
+              </div>
+              <p style="text-align:center;">events</p>
+              <h6 style="color:blue;">in next 180 days</h6>
+            </div>
+
+            <div class=" col-auto">
+              <div
+                class=" icon icon-shape icon-xl bg-info text-white rounded-circle shadow"
+              >
+                <h1 style="color:white;">27</h1>
+              </div>
+              <p style="text-align:center;">booked</p>
+              <h6 style="color:blue;">in past 365 days</h6>
+            </div>
+
+            <div class=" col-auto">
+              <div
+                class=" icon icon-shape icon-xl bg-info text-white rounded-circle shadow"
+              >
+                <h1 style="color:white;">19</h1>
+              </div>
+              <p style="text-align:center;">active</p>
+            </div>
+
+            <div class=" col-auto">
+              <div
+                class=" icon icon-shape icon-xl bg-info text-white rounded-circle shadow"
+              >
+                <h1 style="color:white;">44</h1>
+              </div>
+              <p style="text-align:center;">archived</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
